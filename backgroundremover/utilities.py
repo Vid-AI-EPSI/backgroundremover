@@ -93,11 +93,14 @@ def matte_key(output, file_path,
     if frame_limit != -1:
         total_frames = min(frame_limit, total_frames)
 
-    fr = info["streams"][0]["r_frame_rate"]
+    # Extrayez le taux de rafraîchissement du flux vidéo (index 1)
+    fr = info["streams"][1]["r_frame_rate"]
 
     if framerate == -1:
         print(F"FRAME RATE DETECTED: {fr} (if this looks wrong, override the frame rate)")
-        framerate = math.ceil(eval(fr))
+        # Convertissez la chaîne de caractères "a/b" en une fraction rationnelle a/b
+        framerate = math.ceil(eval(fr.split("/")[0]) / eval(fr.split("/")[1]))
+
 
     print(F"FRAME RATE: {framerate} TOTAL FRAMES: {total_frames}")
 
