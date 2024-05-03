@@ -94,7 +94,10 @@ def matte_key(output, file_path,
         total_frames = min(frame_limit, total_frames)
 
     # Extrayez le taux de rafraîchissement du flux vidéo (index 1)
-    fr = info["streams"][1]["r_frame_rate"]
+    # print("------------------------------------------")
+    # print(info["streams"])
+    # print("------------------------------------------")
+    fr = info["streams"][0]["r_frame_rate"]
 
     if framerate == -1:
         print(F"FRAME RATE DETECTED: {fr} (if this looks wrong, override the frame rate)")
